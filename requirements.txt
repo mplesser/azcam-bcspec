@@ -1,0 +1,18 @@
+ipython
+rich
+
+-e ./azcam
+-e ./azcam-arc
+-e ./azcam-cryocon
+-e ./azcam-ds9
+-e ./azcam-expstatus
+-e ./azcam-fastapi
+-e ./azcam-focus
+-e ./azcam-imageserver
+-e ./azcam-monitor
+-e ./azcam-observe
+-e ./azcam-scripts
+-e ./azcam-testers
+-e ./azcam-webtools
+
+-e ./azcam-bcspec

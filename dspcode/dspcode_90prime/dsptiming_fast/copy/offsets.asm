@@ -1,0 +1,35 @@
+; *** video offsets ***
+OFFSET0     EQU      12645
+OFFSET1     EQU      12164
+OFFSET2     EQU      12834
+OFFSET3     EQU      12225
+OFFSET4     EQU      11099
+OFFSET5     EQU      11418    
+OFFSET6     EQU      11078
+OFFSET7     EQU      12553
+OFFSET8     EQU      11265
+OFFSET9     EQU      12021
+OFFSET10    EQU      11504
+OFFSET11    EQU      12270
+OFFSET12    EQU      11705
+OFFSET13    EQU      12332
+OFFSET14    EQU      14038
+OFFSET15    EQU      12184
+
+; Default values:
+;OFFSET0    EQU      0
+;OFFSET1    EQU      0
+;OFFSET2    EQU      0
+;OFFSET3    EQU      0
+;OFFSET4    EQU      0
+;OFFSET5    EQU      0
+;OFFSET6    EQU      0
+;OFFSET7    EQU      0
+;OFFSET8    EQU      0
+;OFFSET9    EQU      0
+;OFFSET10    EQU      0
+;OFFSET11    EQU      0
+;OFFSET12    EQU      0
+;OFFSET13    EQU      0
+;OFFSET14    EQU      0
+;OFFSET15    EQU      0
