@@ -12,8 +12,8 @@ from azcam_arc.exposure_arc import ExposureArc
 from azcam_arc.tempcon_arc import TempConArc
 from azcam_ds9.ds9display import Ds9Display
 from azcam_imageserver.sendimage import SendImage
-from azcam_bok.bcspec.instrument_bcspec import BCSpecInstrument
-from azcam_bok.common.telescope_bok import BokTCS
+from azcam_bcspec.instrument_bcspec import BCSpecInstrument
+from azcam_bcspec.telescope_bok import BokTCS
 from azcam_fastapi.fastapi_server import WebServer
 from azcam_webtools.status.status import Status
 
@@ -183,7 +183,7 @@ webstatus.initialize()
 # GUI
 # ****************************************************************
 if 1:
-    import azcam_bok.common.start_azcamtool
+    import azcam_bcspec.start_azcamtool
 
 # ****************************************************************
 # finish
