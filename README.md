@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository contains the *azcam-bcspec* azcam environment.  It contains code and data files for the University of Arizona Bok telescope B&C Spectrograph facility camera systems.
+This repository contains the *azcam-bcspec* azcam environment.  It contains code and data files for the University of Arizona Bok telescope B&C Spectrograph facility camera system.
 
 ## Installation
 
