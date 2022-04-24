@@ -10,8 +10,7 @@ Download code and install python package:
 
 ```python
 git clone https://github.com/mplesser/azcam-bcspec
-cd azcam-bcspec
-pip install -r requirements.txt
+pip install -r ./azcam-bcspec/requirements.txt
 ```
 
 For Windows systems a common root folder would be `c:\azcam\azcam-bcspec`.
