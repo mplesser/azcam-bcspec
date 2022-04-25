@@ -172,7 +172,6 @@ observe = Observe()
 # ****************************************************************
 webserver = WebServer()
 webserver.logcommands = 0
-webserver.upload_folder = "/data/uploads"
 webserver.index = os.path.join(azcam.db.systemfolder, "index_bok.html")
 webserver.port = 2403  # common port for all configurations
 webserver.start()
