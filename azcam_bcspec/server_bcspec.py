@@ -172,7 +172,7 @@ observe = Observe()
 # ****************************************************************
 webserver = WebServer()
 webserver.logcommands = 0
-webserver.index = os.path.join(azcam.db.systemfolder, "index_bok.html")
+webserver.index = os.path.join(azcam.db.systemfolder, "index_bcspec.html")
 webserver.port = 2403  # common port for all configurations
 webserver.start()
 webstatus = Status()
@@ -181,7 +181,7 @@ webstatus.initialize()
 # ****************************************************************
 # GUI
 # ****************************************************************
-if 1:
+if 0:
     import azcam_bcspec.start_azcamtool
 
 # ****************************************************************
