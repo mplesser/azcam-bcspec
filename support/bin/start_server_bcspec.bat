@@ -1,3 +1,3 @@
 @echo off
 
-ipython.exe --profile azcamserver --TerminalInteractiveShell.term_title_format=azcamserver -i -m azcam_bcspec.server -- -system bcspec
+ipython.exe --profile azcamserver --TerminalInteractiveShell.term_title_format=azcamserver -i -m azcam_bcspec.server -- -system bcspec -lab
