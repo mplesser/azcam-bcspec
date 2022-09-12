@@ -1,31 +1,35 @@
-[tool.poetry]
+[project]
 name = "azcam-bcspec"
 version = "22.2"
 description = "Azcam extension for Bok telescope B&C spectrograph facility camera"
-authors = ["Michael Lesser <mlesser@arizona.edu>"]
-license = "LICENSE"
+authors = [{name="Michael Lesser"},{email = "mlesser@arizona.edu"}]
+license = {file ="LICENSE"}
 readme = "README.md"
+requires-python = ">=3.9"
 keywords=["ccd", "imaging", "astronomy", "sensors"]
-repository = "https://github.com/mplesser/azcam-bcspec/"
-documentation = "https://mplesser.github.io/azcam/"
 
-[tool.poetry.dependencies]
-python = "^3.9,<3.11"
-ipython = "*"
-rich = "*"
-azcam = "*"
-azcam-monitor = "*"
-azcam-fastapi = "*"
-azcam-arc = "*"
-azcam-ds9 = "*"
-azcam-imageserver = "*"
-azcam-observe = "*"
-azcam-scripts = "*"
-azcam-testers = "*"
-azcam-webtools = "*"
+dependencies = [
+    "ipython",
+    "rich",
+    "azcam",
+    "azcam-monitor",
+    "azcam-fastapi",
+    "azcam-arc",
+    "azcam-ds9",
+    "azcam-imageserver",
+    "azcam-observe",
+    "azcam-scripts",
+    "azcam-testers",
+    "azcam-webtools",
+]
 
-[tool.poetry.dev-dependencies]
+[project.urls]
+Documentation = "https://mplesser.github.io/azcam/"
+Repository = "https://github.com/mplesser/azcam-bcspec/"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "azcam_bcspec"
