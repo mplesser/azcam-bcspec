@@ -19,7 +19,7 @@ if "-server" in args:
     SERVER = True
 
 if os.name == "posix":
-    AZCAM_DATAROOT="~/data"
+    AZCAM_DATAROOT=f'{os.path.abspath("data")}'
     os.environ['AZCAM_DATAROOT']=AZCAM_DATAROOT
     print(f'AzCam data root is {AZCAM_DATAROOT}')
 
