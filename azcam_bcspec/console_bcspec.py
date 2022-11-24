@@ -7,8 +7,8 @@ import threading
 import azcam
 import azcam.console
 import azcam.shortcuts
-from azcam_ds9.ds9display import Ds9Display
-from azcam_observe.observe import Observe
+from azcam.tools.ds9.ds9display import Ds9Display
+from azcam.tools.observe.observe import Observe
 import azcam.tools.console_tools
 
 try:
