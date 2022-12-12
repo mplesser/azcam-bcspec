@@ -13,5 +13,7 @@ else:
 
 if exe is None:
     exe = "c:\\azcam\\azcam-tool\\azcam_tool\\builds\\azcamtool.exe"
+
 s = f"start {exe} -s localhost -p {cmdport}"
+
 os.system(s)
