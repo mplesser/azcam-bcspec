@@ -13,7 +13,7 @@ from azcam.tools.ds9display import Ds9Display
 from azcam.tools.sendimage import SendImage
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
-from azcam.tools.fastapi.fastapi_server import WebServer
+from azcam.tools.webserver.fastapi_server import WebServer
 from azcam.tools.webtools.status.status import Status
 
 try:
