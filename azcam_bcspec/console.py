@@ -5,11 +5,11 @@ import sys
 import threading
 
 import azcam
-import azcam.console
-import azcam.shortcuts
+import azcam_console
+import azcam_console.shortcuts
 from azcam.tools.ds9display import Ds9Display
-from azcam_observe.observe import Observe
-import azcam.tools.console_tools
+from azcam_observe.observe_common import ObserveCommon
+import azcam_console.tools.console_tools
 
 try:
     i = sys.argv.index("-datafolder")
@@ -59,14 +59,14 @@ dthread.start()  # thread just for speed
 # ****************************************************************
 # console tools
 # ****************************************************************
-from azcam.tools import create_console_tools
+from azcam_console.tools import create_console_tools
 
 create_console_tools()
 
 # ****************************************************************
 # observe
 # ****************************************************************
-observe = Observe()
+observe = ObserveCommon()
 
 # ****************************************************************
 # try to connect to azcamserver
