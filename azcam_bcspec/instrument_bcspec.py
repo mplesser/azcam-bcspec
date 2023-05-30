@@ -5,7 +5,7 @@ import socket
 import time
 
 import azcam
-from azcam.tools.instrument import Instrument
+from azcam_server.tools.instrument import Instrument
 
 
 class BCSpecInstrument(Instrument):
@@ -18,7 +18,6 @@ class BCSpecInstrument(Instrument):
     Lamps = ["NEON", "CONT", "UV", "HE/AR", "FE/NE", "UNDEF", "MIRROR", "SPARE"]
 
     def __init__(self, tool_id="instrument", description="bcspec"):
-
         super().__init__(tool_id, description)
 
         self.Name = "BCSpec"
@@ -130,7 +129,6 @@ class BCSpecInstrument(Instrument):
         return self.set_active_comps(CompNames, CompTypeID)
 
     def set_active_comps(self, CompNames=[], CompTypeID=0):
-
         comps = []
         if type(CompNames) == list:
             for lamp in CompNames:
@@ -320,7 +318,6 @@ class InstrumentServerInterface(object):
     ERROR = "ERROR"
 
     def __init__(self, Host, Port, Name=""):
-
         self.Host = Host
         self.Port = Port
         self.Name = Name
@@ -469,7 +466,6 @@ class BokData(socket.socket):
     )
 
     def __init__(self, HOST="10.30.1.3", PORT=5554, timeout=1.0):
-
         # self.timeout=timeout
         self.host = HOST
         self.port = PORT

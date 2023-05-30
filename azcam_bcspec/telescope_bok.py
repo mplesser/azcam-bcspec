@@ -7,7 +7,7 @@ from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 from astropy.time import Time
 
 import azcam
-from azcam.tools.telescope import Telescope
+from azcam_server.tools.telescope import Telescope
 
 
 class BokTCS(Telescope):
@@ -16,7 +16,6 @@ class BokTCS(Telescope):
     """
 
     def __init__(self, tool_id="telescope", description="Bok telescope"):
-
         super().__init__(tool_id, description)
 
         self.name = "Bok telescope"
@@ -260,9 +259,9 @@ class BokTCS(Telescope):
 
         ra = coord.ra.to_string(sep="", precision=2, pad=True, unit="hourangle")
         dec = coord.dec.to_string(sep="", precision=1, pad=True, alwayssign=True)
-        #print(f"RA/DEC: {ra}, {dec}")
-        #print(f"Obstime: {coord.obstime}")
-        #print(f"Azimuth/Altitude: {coord.altaz.az}, {coord.altaz.alt}")
+        # print(f"RA/DEC: {ra}, {dec}")
+        # print(f"Obstime: {coord.obstime}")
+        # print(f"Azimuth/Altitude: {coord.altaz.az}, {coord.altaz.alt}")
         # print(f"Location: {coord.location}")
 
         replylen = 1024
@@ -390,7 +389,6 @@ class BokTCS(Telescope):
 
 
 class TelcomServerInterface(object):
-
     Host = ""
     Port = 0
     Socket = 0

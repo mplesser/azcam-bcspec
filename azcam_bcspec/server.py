@@ -9,8 +9,8 @@ from azcam.header import System
 from azcam_server.tools.arc.controller_arc import ControllerArc
 from azcam_server.tools.arc.exposure_arc import ExposureArc
 from azcam_server.tools.arc.tempcon_arc import TempConArc
-from azcam.tools.ds9display import Ds9Display
-from azcam.tools.sendimage import SendImage
+from azcam_server.tools.ds9display import Ds9Display
+from azcam_server.tools.sendimage import SendImage
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
 from azcam_server.tools.webserver.fastapi_server import WebServer
