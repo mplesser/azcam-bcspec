@@ -1,18 +1,14 @@
 [project]
 name = "azcam-bcspec"
-version = "22.3.1"
+version = "22.4"
 description = "Azcam extension for Bok telescope B&C spectrograph facility camera"
-authors = [{name="Michael Lesser"},{email = "mlesser@arizona.edu"}]
-license = {file ="LICENSE"}
+authors = [{ name = "Michael Lesser" }, { email = "mlesser@arizona.edu" }]
+license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.8"
-keywords=["ccd", "imaging", "astronomy", "sensors"]
+keywords = ["ccd", "imaging", "astronomy", "sensors"]
 
-dependencies = [
-    "ipython",
-    "rich",
-    "azcam",
-]
+dependencies = ["ipython==8.10", "rich", "azcam"]
 
 [project.urls]
 Documentation = "https://mplesser.github.io/azcam/"
