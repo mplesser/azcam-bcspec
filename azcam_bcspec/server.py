@@ -73,7 +73,7 @@ controller.timing_file = os.path.join(
     azcam.db.datafolder, "dspcode", "dsptiming", "tim1_norm_LR.lod"
 )
 if lab:
-    controller.camserver.set_server("conserver7", 2405)
+    controller.camserver.set_server("10.0.0.3", 2405)
 else:
     controller.camserver.set_server("10.30.1.34", 2405)
 
@@ -116,7 +116,7 @@ detector_bcspec = {
     "description": "STA 1200x800 CCD",
     "ref_pixel": [600, 400],
     "format": [1200, 18, 0, 20, 800, 0, 0, 0, 0],
-    "focalplane": [1, 1, 1, 1, "0"],
+    "focalplane": [1, 1, 1, 1, [0]],
     "roi": [1, 1200, 1, 800, 2, 2],
     "ext_position": [[1, 1]],
     "jpg_order": [1, 1],
