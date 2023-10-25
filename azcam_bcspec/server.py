@@ -13,8 +13,9 @@ from azcam_server.tools.ds9display import Ds9Display
 from azcam_server.tools.sendimage import SendImage
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
-from azcam_server.tools.webserver.fastapi_server import WebServer
-from azcam_server.tools.webtools.status.status import Status
+from azcam_server.webserver.fastapi_server import WebServer
+from azcam_webtools.status.status import Status
+from azcam_webtools.exptool.exptool import Exptool
 
 try:
     i = sys.argv.index("-datafolder")
