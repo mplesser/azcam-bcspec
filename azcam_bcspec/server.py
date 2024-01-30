@@ -1,5 +1,7 @@
 """
-azcamserver config for bcspec
+Setup method for bcspec azcamserver.
+Usage example:
+  python -i -m azcam_bcspec.server
 """
 
 import os
@@ -21,24 +23,21 @@ from azcam_webtools.webserver.fastapi_server import WebServer
 from azcam_webtools.status.status import Status
 from azcam_webtools.exptool.exptool import Exptool
 
-try:
-    i = sys.argv.index("-datafolder")
-    datafolder = sys.argv[i + 1]
-except ValueError:
-    datafolder = None
-try:
-    i = sys.argv.index("-lab")
-    lab = 1
-except ValueError:
-    lab = 0
-
 
 def setup():
-    global datafolder, lab
+    # command line args
+    try:
+        i = sys.argv.index("-datafolder")
+        datafolder = sys.argv[i + 1]
+    except ValueError:
+        datafolder = None
+    try:
+        i = sys.argv.index("-lab")
+        lab = 1
+    except ValueError:
+        lab = 0
 
-    # ****************************************************************
     # define folders for system
-    # ****************************************************************
     azcam.db.systemname = "bcspec"
     azcam.db.servermode = azcam.db.systemname
 
@@ -60,16 +59,12 @@ def setup():
         f"parameters_server_{azcam.db.systemname}.ini",
     )
 
-    # ****************************************************************
     # enable logging
-    # ****************************************************************
     logfile = os.path.join(azcam.db.datafolder, "logs", "server.log")
     azcam.db.logger.start_logging(logfile=logfile)
     azcam.log(f"Configuring for BCSpec")
 
-    # ****************************************************************
     # controller
-    # ****************************************************************
     controller = ControllerArc()
     controller.timing_board = "gen1"
     controller.clock_boards = ["gen1"]
@@ -92,16 +87,12 @@ def setup():
     else:
         controller.camserver.set_server("10.30.1.34", 2405)
 
-    # ****************************************************************
     # temperature controller
-    # ****************************************************************
     tempcon = TempConArc()
     tempcon.control_temperature = -135.0
     tempcon.set_calibrations([1, 1, 3])
 
-    # ****************************************************************
     # exposure
-    # ****************************************************************
     exposure = ExposureArc()
     exposure.filetype = exposure.filetypes["FITS"]
     exposure.image.filetype = exposure.filetypes["FITS"]
@@ -139,48 +130,34 @@ def setup():
     }
     exposure.set_detpars(detector_bcspec)
 
-    # ****************************************************************
     # instrument
-    # ****************************************************************
     instrument = BCSpecInstrument()
 
-    # ****************************************************************
     # telescope
-    # ****************************************************************
     telescope = BokTCS()
 
-    # ****************************************************************
     # system header template
-    # ****************************************************************
     template = os.path.join(
         azcam.db.datafolder, "templates", "fits_template_bcspec_master.txt"
     )
     system = System("bcspec", template)
     system.set_keyword("DEWAR", "bcspec", "Dewar name")
 
-    # ****************************************************************
     # display
-    # ****************************************************************
     display = Ds9Display()
 
-    # ****************************************************************
-    # read par file
-    # ****************************************************************
+    # par file
     azcam.db.parameters.read_parfile(parfile)
     azcam.db.parameters.update_pars("azcamserver")
 
-    # ****************************************************************
     # define and start command server
-    # ****************************************************************
     cmdserver = CommandServer()
     cmdserver.port = 2442
     azcam.log(f"Starting cmdserver - listening on port {cmdserver.port}")
     # cmdserver.welcome_message = "Welcome - azcam-itl server"
     cmdserver.start()
 
-    # ****************************************************************
     # web server
-    # ****************************************************************
     webserver = WebServer()
     webserver.logcommands = 0
     webserver.index = os.path.join(azcam.db.systemfolder, "index_bcspec.html")
@@ -189,23 +166,14 @@ def setup():
     webstatus = Status()
     webstatus.initialize()
 
-    # ****************************************************************
     # GUI
-    # ****************************************************************
     if 1:
         import azcam_bcspec.start_azcamtool
 
-    # try to change window title
-    try:
-        ctypes.windll.kernel32.SetConsoleTitleW("azcamserver")
-    except Exception:
-        pass
-
-    # ****************************************************************
     # finish
-    # ****************************************************************
     azcam.log("Configuration complete")
 
 
+# start
 setup()
 from azcam.cli import *
