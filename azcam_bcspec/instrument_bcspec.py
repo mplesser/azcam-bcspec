@@ -5,6 +5,7 @@ import socket
 import time
 
 import azcam
+from azcam import exceptions
 from azcam_server.tools.instrument import Instrument
 
 
@@ -58,7 +59,7 @@ class BCSpecInstrument(Instrument):
             # reply=reply[4:]
             return reply
         else:
-            raise azcam.AzcamError(reply)
+            raise exceptions.AzcamError(reply)
 
     def initialize(self):
         """
@@ -66,7 +67,7 @@ class BCSpecInstrument(Instrument):
         """
 
         if not self.enabled:
-            azcam.AzcamWarning(f"{self.name} is not enabled")
+            exceptions.warning(f"{self.name} is not enabled")
             return
 
         cmd = "INITOPTO"
@@ -186,7 +187,7 @@ class BCSpecInstrument(Instrument):
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
-            raise azcam.AzcamError(f"Invalid lamp name: {LampName}")
+            raise exceptions.AzcamError(f"Invalid lamp name: {LampName}")
 
         if LampName.upper() == "FE/NE":
             for i in range(2):
@@ -217,7 +218,7 @@ class BCSpecInstrument(Instrument):
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
-            raise azcam.AzcamError(f"Invalid lamp name: {LampName}")
+            raise exceptions.AzcamError(f"Invalid lamp name: {LampName}")
 
         if LampName.upper() == "HE/AR/NE":
             cmd = "OFFLAMP HE/AR"
@@ -252,7 +253,7 @@ class BCSpecInstrument(Instrument):
         try:
             reply = self.header.values[keyword]
         except Exception:
-            raise azcam.AzcamError(f"Keyword {keyword} not defined")
+            raise exceptions.AzcamError(f"Keyword {keyword} not defined")
 
         # store value in Header
         self.header.set_keyword(keyword, reply)
@@ -271,7 +272,7 @@ class BCSpecInstrument(Instrument):
         """
 
         if not self.enabled:
-            azcam.AzcamWarning("instrument not enabled")
+            exceptions.warning("instrument not enabled")
             return
 
         header = []
@@ -377,7 +378,9 @@ class InstrumentServerInterface(object):
         """
 
         try:
-            self.Socket.send(str.encode(Command + Terminator))  # send command with terminator
+            self.Socket.send(
+                str.encode(Command + Terminator)
+            )  # send command with terminator
             return ["OK"]
         except Exception:
             self.close()

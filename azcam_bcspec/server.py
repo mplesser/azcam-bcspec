@@ -163,7 +163,7 @@ def setup():
     webserver.index = os.path.join(azcam.db.systemfolder, "index_bcspec.html")
     webserver.port = 2403  # common port for all configurations
     webserver.start()
-    webstatus = Status()
+    webstatus = Status(webserver)
     webstatus.initialize()
 
     # GUI
