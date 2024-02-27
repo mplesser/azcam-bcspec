@@ -19,9 +19,9 @@ from azcam_server.tools.ds9display import Ds9Display
 from azcam_server.tools.sendimage import SendImage
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
-from azcam_webtools.webserver.fastapi_server import WebServer
-from azcam_webtools.status.status import Status
-from azcam_webtools.exptool.exptool import Exptool
+from azcam_server.webtools.webserver.fastapi_server import WebServer
+from azcam_server.webtools.status.status import Status
+from azcam_server.webtools.exptool.exptool import Exptool
 
 
 def setup():
