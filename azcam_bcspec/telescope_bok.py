@@ -8,7 +8,7 @@ from astropy.time import Time
 
 import azcam
 from azcam import exceptions
-from azcam_server.tools.telescope import Telescope
+from azcam.server.tools.telescope import Telescope
 
 
 class BokTCS(Telescope):
