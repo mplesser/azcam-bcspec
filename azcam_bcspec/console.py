@@ -13,7 +13,7 @@ import azcam.utils
 import azcam.console
 import azcam.console.shortcuts
 from azcam.server.tools.ds9display import Ds9Display
-from azcam_observe.observe_common import ObserveCommon
+from azcam.observe.observe_common import ObserveCommon
 import azcam.console.tools.console_tools
 
 
