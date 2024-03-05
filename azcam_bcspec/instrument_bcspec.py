@@ -5,7 +5,7 @@ import socket
 import time
 
 import azcam
-from azcam import exceptions
+import azcam.exceptions
 from azcam.server.tools.instrument import Instrument
 
 
@@ -59,7 +59,7 @@ class BCSpecInstrument(Instrument):
             # reply=reply[4:]
             return reply
         else:
-            raise exceptions.AzcamError(reply)
+            raise azcam.exceptions.AzCamError(reply)
 
     def initialize(self):
         """
@@ -67,7 +67,7 @@ class BCSpecInstrument(Instrument):
         """
 
         if not self.enabled:
-            exceptions.warning(f"{self.name} is not enabled")
+            azcam.exceptions.warning(f"{self.name} is not enabled")
             return
 
         cmd = "INITOPTO"
@@ -187,7 +187,7 @@ class BCSpecInstrument(Instrument):
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
-            raise exceptions.AzcamError(f"Invalid lamp name: {LampName}")
+            raise azcam.exceptions.AzCamError(f"Invalid lamp name: {LampName}")
 
         if LampName.upper() == "FE/NE":
             for i in range(2):
@@ -218,7 +218,7 @@ class BCSpecInstrument(Instrument):
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
-            raise exceptions.AzcamError(f"Invalid lamp name: {LampName}")
+            raise azcam.exceptions.AzCamError(f"Invalid lamp name: {LampName}")
 
         if LampName.upper() == "HE/AR/NE":
             cmd = "OFFLAMP HE/AR"
@@ -253,7 +253,7 @@ class BCSpecInstrument(Instrument):
         try:
             reply = self.header.values[keyword]
         except Exception:
-            raise exceptions.AzcamError(f"Keyword {keyword} not defined")
+            raise azcam.exceptions.AzCamError(f"Keyword {keyword} not defined")
 
         # store value in Header
         self.header.set_keyword(keyword, reply)
@@ -272,7 +272,7 @@ class BCSpecInstrument(Instrument):
         """
 
         if not self.enabled:
-            exceptions.warning("instrument not enabled")
+            azcam.exceptions.warning("instrument not enabled")
             return
 
         header = []

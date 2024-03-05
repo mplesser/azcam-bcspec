@@ -7,7 +7,7 @@ from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 from astropy.time import Time
 
 import azcam
-from azcam import exceptions
+import azcam.exceptions
 from azcam.server.tools.telescope import Telescope
 
 
@@ -33,7 +33,7 @@ class BokTCS(Telescope):
             return
 
         if not self.enabled:
-            exceptions.warning(f"{self.name} is not enabled")
+            azcam.exceptions.warning(f"{self.name} is not enabled")
             return
 
         # telescope server interface
@@ -92,7 +92,7 @@ class BokTCS(Telescope):
         """
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         try:
@@ -100,7 +100,7 @@ class BokTCS(Telescope):
                 "REQUEST " + self.Tserver.keywords[keyword]
             )
         except KeyError:
-            raise exceptions.AzcamError(f"Keyword {keyword} not defined")
+            raise azcam.exceptions.AzCamError(f"Keyword {keyword} not defined")
 
         ReplyLength = self.Tserver.ReplyLengths[keyword]
         reply = self.Tserver.command(command, ReplyLength + self.Tserver.Offset)
@@ -135,7 +135,7 @@ class BokTCS(Telescope):
         """
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         header = []
@@ -188,7 +188,7 @@ class BokTCS(Telescope):
         """
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         command = self.Tserver.make_packet("RADECGUIDE %s %s" % (RA, Dec))
@@ -209,7 +209,7 @@ class BokTCS(Telescope):
         """
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         if self.mock == 1:
@@ -245,7 +245,7 @@ class BokTCS(Telescope):
         Epoch = 2000.0
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         if self.mock == 1:
@@ -298,7 +298,7 @@ class BokTCS(Telescope):
         azcam.log("move_start command received:%s %s" % (RA, Dec))
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         if self.mock == 1:
@@ -334,7 +334,7 @@ class BokTCS(Telescope):
             try:
                 motion = int(reply[0])
             except Exception:
-                raise exceptions.AzcamError("bad MOTION status found: %s" % reply)
+                raise azcam.exceptions.AzCamError("bad MOTION status found: %s" % reply)
 
             if motion:
                 return 1
@@ -352,7 +352,7 @@ class BokTCS(Telescope):
         """
 
         if not self.enabled:
-            exceptions.warning("telescope not enabled")
+            azcam.exceptions.warning("telescope not enabled")
             return
 
         if self.mock == 1:
@@ -370,7 +370,9 @@ class BokTCS(Telescope):
             try:
                 motion = int(reply[0])
             except Exception:
-                raise exceptions.AzcamError("bad MOTION status keyword: %s" % reply)
+                raise azcam.exceptions.AzCamError(
+                    "bad MOTION status keyword: %s" % reply
+                )
 
             if not motion:
                 azcam.log("Telescope reports it is STOPPED")
@@ -388,7 +390,7 @@ class BokTCS(Telescope):
         command = self.Tserver.make_packet(command)
         reply = self.Tserver.command(command, 1024)
 
-        raise exceptions.AzcamError("STOPPED motion flag not detected")
+        raise azcam.exceptions.AzCamError("STOPPED motion flag not detected")
 
 
 class TelcomServerInterface(object):
@@ -494,7 +496,7 @@ class TelcomServerInterface(object):
             self.TELID = "BOK"
             self.Offset = 10
         else:
-            exceptions.AzcamError(f"ERROR bad telescope name: {name}")
+            azcam.exceptions.AzCamError(f"ERROR bad telescope name: {name}")
 
         return
 
@@ -514,7 +516,7 @@ class TelcomServerInterface(object):
             self.Socket.connect((self.Host, self.Port))
             return
         except Exception:
-            raise exceptions.AzcamError("could not open telescope server socket")
+            raise azcam.exceptions.AzCamError("could not open telescope server socket")
 
     def close(self):
         """
@@ -610,7 +612,7 @@ class TelcomServerInterface(object):
             reply = self.parse_remove_null(replist)
             return reply[3]
         except Exception:
-            raise exceptions.AzcamError("telescope parse error")
+            raise azcam.exceptions.AzCamError("telescope parse error")
 
     def parse_remove_null(self, List):
         """
