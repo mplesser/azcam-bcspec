@@ -59,7 +59,7 @@ class BCSpecInstrument(Instrument):
             # reply=reply[4:]
             return reply
         else:
-            raise azcam.exceptions.AzCamError(reply)
+            raise azcam.exceptions.AzcamError(reply)
 
     def initialize(self):
         """
@@ -187,7 +187,7 @@ class BCSpecInstrument(Instrument):
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
-            raise azcam.exceptions.AzCamError(f"Invalid lamp name: {LampName}")
+            raise azcam.exceptions.AzcamError(f"Invalid lamp name: {LampName}")
 
         if LampName.upper() == "FE/NE":
             for i in range(2):
@@ -218,7 +218,7 @@ class BCSpecInstrument(Instrument):
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
-            raise azcam.exceptions.AzCamError(f"Invalid lamp name: {LampName}")
+            raise azcam.exceptions.AzcamError(f"Invalid lamp name: {LampName}")
 
         if LampName.upper() == "HE/AR/NE":
             cmd = "OFFLAMP HE/AR"
@@ -253,7 +253,7 @@ class BCSpecInstrument(Instrument):
         try:
             reply = self.header.values[keyword]
         except Exception:
-            raise azcam.exceptions.AzCamError(f"Keyword {keyword} not defined")
+            raise azcam.exceptions.AzcamError(f"Keyword {keyword} not defined")
 
         # store value in Header
         self.header.set_keyword(keyword, reply)

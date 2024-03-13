@@ -100,7 +100,7 @@ class BokTCS(Telescope):
                 "REQUEST " + self.Tserver.keywords[keyword]
             )
         except KeyError:
-            raise azcam.exceptions.AzCamError(f"Keyword {keyword} not defined")
+            raise azcam.exceptions.AzcamError(f"Keyword {keyword} not defined")
 
         ReplyLength = self.Tserver.ReplyLengths[keyword]
         reply = self.Tserver.command(command, ReplyLength + self.Tserver.Offset)
@@ -334,7 +334,7 @@ class BokTCS(Telescope):
             try:
                 motion = int(reply[0])
             except Exception:
-                raise azcam.exceptions.AzCamError("bad MOTION status found: %s" % reply)
+                raise azcam.exceptions.AzcamError("bad MOTION status found: %s" % reply)
 
             if motion:
                 return 1
@@ -370,7 +370,7 @@ class BokTCS(Telescope):
             try:
                 motion = int(reply[0])
             except Exception:
-                raise azcam.exceptions.AzCamError(
+                raise azcam.exceptions.AzcamError(
                     "bad MOTION status keyword: %s" % reply
                 )
 
@@ -390,7 +390,7 @@ class BokTCS(Telescope):
         command = self.Tserver.make_packet(command)
         reply = self.Tserver.command(command, 1024)
 
-        raise azcam.exceptions.AzCamError("STOPPED motion flag not detected")
+        raise azcam.exceptions.AzcamError("STOPPED motion flag not detected")
 
 
 class TelcomServerInterface(object):
@@ -496,7 +496,7 @@ class TelcomServerInterface(object):
             self.TELID = "BOK"
             self.Offset = 10
         else:
-            azcam.exceptions.AzCamError(f"ERROR bad telescope name: {name}")
+            azcam.exceptions.AzcamError(f"ERROR bad telescope name: {name}")
 
         return
 
@@ -516,7 +516,7 @@ class TelcomServerInterface(object):
             self.Socket.connect((self.Host, self.Port))
             return
         except Exception:
-            raise azcam.exceptions.AzCamError("could not open telescope server socket")
+            raise azcam.exceptions.AzcamError("could not open telescope server socket")
 
     def close(self):
         """
@@ -612,7 +612,7 @@ class TelcomServerInterface(object):
             reply = self.parse_remove_null(replist)
             return reply[3]
         except Exception:
-            raise azcam.exceptions.AzCamError("telescope parse error")
+            raise azcam.exceptions.AzcamError("telescope parse error")
 
     def parse_remove_null(self, List):
         """
