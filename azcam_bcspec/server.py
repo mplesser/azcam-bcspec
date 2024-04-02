@@ -17,7 +17,6 @@ from azcam.server.tools.arc.controller_arc import ControllerArc
 from azcam.server.tools.arc.exposure_arc import ExposureArc
 from azcam.server.tools.arc.tempcon_arc import TempConArc
 from azcam.server.tools.ds9display import Ds9Display
-from azcam.server.tools.sendimage import SendImage
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
 from azcam.server.webtools.webserver.fastapi_server import WebServer
@@ -92,10 +91,9 @@ def setup():
     exposure.image.filetype = exposure.filetypes["FITS"]
     exposure.display_image = 0
     exposure.folder = azcam.db.datafolder
-    sendimage = SendImage()
     if not lab:
         exposure.send_image = 1
-        sendimage.set_remote_imageserver("10.30.1.2", 6543, "dataserver")
+        exposure.sendimage.set_remote_imageserver("10.30.1.2", 6543, "dataserver")
 
     ref1 = 1.0
     ref2 = 1.0
@@ -142,7 +140,7 @@ def setup():
 
     # par file
     azcam.db.parameters.read_parfile(parfile)
-    azcam.db.parameters.update_pars("azcamserver")
+    azcam.db.parameters.update_pars()
 
     # define and start command server
     cmdserver = CommandServer()
