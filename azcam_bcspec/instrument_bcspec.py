@@ -6,7 +6,7 @@ import time
 
 import azcam
 import azcam.exceptions
-from azcam.server.tools.instrument import Instrument
+from azcam.tools.instrument import Instrument
 
 
 class BCSpecInstrument(Instrument):
