@@ -10,11 +10,11 @@ import threading
 
 import azcam
 import azcam.utils
-import azcam.console
-import azcam.console.shortcuts
-from azcam.server.tools.ds9display import Ds9Display
-from azcam.observe.observe_common import ObserveCommon
-import azcam.console.tools.console_tools
+import azcam_console.console
+import azcam_console.shortcuts
+from azcam.tools.ds9display import Ds9Display
+from azcam_console.observe.observe_common import ObserveCommon
+import azcam_console.tools.console_tools
 
 
 def setup():
@@ -52,7 +52,7 @@ def setup():
     dthread.start()  # thread just for speed
 
     # console tools
-    from azcam.console.tools import create_console_tools
+    from azcam_console.tools import create_console_tools
 
     create_console_tools()
 
@@ -75,4 +75,4 @@ def setup():
 # start
 setup()
 
-from azcam.cli import *
+from azcam_console.cli import *
