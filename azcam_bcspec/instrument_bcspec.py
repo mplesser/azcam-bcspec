@@ -40,7 +40,7 @@ class BCSpecInstrument(Instrument):
         Command interface for BCSpec instrument.
         """
 
-        if not self.initialized:
+        if not self.is_initialized:
             self.initialize()
 
         reply = self.Iserver.open()
@@ -66,14 +66,14 @@ class BCSpecInstrument(Instrument):
         Initialize OPTO22.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning(f"{self.name} is not enabled")
             return
 
         cmd = "INITOPTO"
         reply = self.Iserver.command(cmd)
 
-        self.initialized = 1
+        self.is_initialized = 1
 
         return reply
 
@@ -152,7 +152,7 @@ class BCSpecInstrument(Instrument):
         Turn Comps on.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             return
 
         # so we want this?
@@ -168,7 +168,7 @@ class BCSpecInstrument(Instrument):
         Turn Comps off.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             return
 
         # reply=self.lamps_off_all()
@@ -183,7 +183,7 @@ class BCSpecInstrument(Instrument):
         Turn a lamp on.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
@@ -214,7 +214,7 @@ class BCSpecInstrument(Instrument):
         Turn a lamp off.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             return
 
         if not LampName.upper() in self.Lamps and LampName.upper() != "HE/AR/NE":
@@ -271,7 +271,7 @@ class BCSpecInstrument(Instrument):
         Type is one of 'str', 'int', 'float', or 'complex'.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("instrument not enabled")
             return
 

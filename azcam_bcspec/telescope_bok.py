@@ -29,10 +29,10 @@ class BokTCS(Telescope):
         Initializes the telescope interface.
         """
 
-        if self.initialized:
+        if self.is_initialized:
             return
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning(f"{self.name} is not enabled")
             return
 
@@ -42,7 +42,7 @@ class BokTCS(Telescope):
         # add keywords
         self.define_keywords()
 
-        self.initialized = 1
+        self.is_initialized = 1
 
         return
 
@@ -91,7 +91,7 @@ class BokTCS(Telescope):
         This command will read hardware to obtain the keyword value.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
@@ -134,7 +134,7 @@ class BokTCS(Telescope):
         Type is one of str, int, or float.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
@@ -169,7 +169,7 @@ class BokTCS(Telescope):
         """
 
         # delete all keywords if not enabled
-        if not self.enabled:
+        if not self.is_enabled:
             self.header.delete_all_keywords()
             return
 
@@ -187,7 +187,7 @@ class BokTCS(Telescope):
         Offsets telescope in arcsecs.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
@@ -208,7 +208,7 @@ class BokTCS(Telescope):
         Do not use colons in coordinates.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
@@ -244,7 +244,7 @@ class BokTCS(Telescope):
 
         Epoch = 2000.0
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
@@ -297,7 +297,7 @@ class BokTCS(Telescope):
 
         azcam.log("move_start command received:%s %s" % (RA, Dec))
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
@@ -351,7 +351,7 @@ class BokTCS(Telescope):
         Wait for telescope to stop moving.
         """
 
-        if not self.enabled:
+        if not self.is_enabled:
             azcam.exceptions.warning("telescope not enabled")
             return
 
