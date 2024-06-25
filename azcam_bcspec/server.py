@@ -137,6 +137,7 @@ def setup():
 
     # display
     display = Ds9Display()
+    display.initialize()
 
     # par file
     azcam.db.parameters.read_parfile(parfile)
@@ -144,7 +145,7 @@ def setup():
 
     # define and start command server
     cmdserver = CommandServer()
-    cmdserver.port = 2442
+    cmdserver.port = 2452
     azcam.log(f"Starting cmdserver - listening on port {cmdserver.port}")
     # cmdserver.welcome_message = "Welcome - azcam-itl server"
     cmdserver.start()

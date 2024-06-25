@@ -1,7 +1,7 @@
 [project]
 name = "azcam-bcspec"
 version = "24.0"
-description = "Azcam extension for Bok telescope B&C spectrograph facility camera"
+description = "Azcam environment for Bok telescope B&C spectrograph facility camera"
 authors = [{ name = "Michael Lesser" }, { email = "mlesser@arizona.edu" }]
 license = { file = "LICENSE" }
 readme = "README.md"
