@@ -1,0 +1,20 @@
+OBSERVER xxx			/ Observers
+INSFILTE XXX			/ instrument filters
+APERTURE XXX arcsec slit	/ slit width (arcsec)
+DISPERSE XXX			/ disperser
+TILTPOS  XXX			/ tilt position (degrees)
+INSFOCUS XXX			/ instrument focus
+DISPAXIS 1			/ dispersion axis
+INSTRUME Bok B&C Spectrograph	/ Instrument name
+DETNAME  ccd1=sn5812			/ Detector identifier
+PIXSIZE1 15.0			/ Pixel size for axis 1 (microns)
+PIXSIZE2 15.0			/ Pixel size for axis 2 (microns)
+GAIN     1.5			/ Conversion gain (e-\DN) for GAIN=1
+RDNOISE  3.0 			/ Read noise (electrons) for GAIN=1
+DARKCUR  5.4			/ Average dark current (e-\pixel\hour)
+OBSERVAT KPNO			/ observatory
+TELESCOP bok			/ Telescope name
+SITELAT	 31:57.8		/ Latitude (degrees N)
+SITELONG 111:36.0		/ Longitude (degrees W)
+SITEELEV 2120			/ Altitude (meters)
+TIMEZONE 7			/ local time zone
