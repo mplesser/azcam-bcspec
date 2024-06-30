@@ -159,6 +159,10 @@ def setup():
     webstatus = Status(webserver)
     webstatus.initialize()
 
+    # azcammonitor
+    azcam.db.monitor.proc_path = "/azcam/azcam-bcspec/support/start_server_bcspec.py"
+    azcam.db.monitor.register()
+
     # GUI
     if 1:
         import azcam_bcspec.start_azcamtool

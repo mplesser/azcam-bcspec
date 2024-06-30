@@ -4,7 +4,7 @@ AzCamMonitor process start file
 
 import subprocess
 
-OPTIONS = "../support/parameters_monitor_bcspec.ini"
+OPTIONS = "./parameters_monitor_bcspec.ini"
 
 CMD = f"python -m azcam.monitor -- -configfile {OPTIONS}"
 # CMD = f"ipython -i -m azcam.monitor -- -configfile {OPTIONS}"
