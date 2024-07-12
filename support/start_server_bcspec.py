@@ -6,7 +6,7 @@ import subprocess
 
 OPTIONS = "-bcspec"
 # OPTIONS = "-bcspec -lab"
-CMD = f"ipython --profile azcamserver -i -m azcam_90prime.server -- {OPTIONS}"
+CMD = f"ipython --profile azcamserver -i -m azcam_bcspec.server -- {OPTIONS}"
 
 p = subprocess.Popen(
     CMD,
