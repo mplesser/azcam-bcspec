@@ -19,9 +19,7 @@ from azcam.tools.arc.tempcon_arc import TempConArc
 from azcam.tools.ds9display import Ds9Display
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
-from azcam.webtools.webserver import WebServer
-from azcam.webtools.status.status import Status
-from azcam.webtools.exptool.exptool import Exptool
+from azcam.web.webserver_dash import WebServer
 
 
 def setup():
@@ -153,11 +151,8 @@ def setup():
     # web server
     webserver = WebServer()
     webserver.logcommands = 0
-    webserver.index = os.path.join(azcam.db.systemfolder, "index_bcspec.html")
     webserver.port = 2403  # common port for all configurations
     webserver.start()
-    webstatus = Status(webserver)
-    webstatus.initialize()
 
     # azcammonitor
     azcam.db.monitor.register()
