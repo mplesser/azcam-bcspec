@@ -14,6 +14,7 @@ import azcam_console.console
 import azcam_console.shortcuts
 from azcam.tools.ds9display import Ds9Display
 from azcam_console.observe.observe_common import ObserveCommon
+from azcam_console.observe.observe_cli.observe_cli import ObserveCli
 import azcam_console.tools.console_tools
 
 
@@ -57,7 +58,7 @@ def setup():
     create_console_tools()
 
     # observe
-    observe = ObserveCommon()
+    observe = ObserveCli()
 
     # try to connect to azcamserver
     server = azcam.db.tools["server"]
