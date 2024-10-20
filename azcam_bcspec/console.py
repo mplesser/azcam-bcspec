@@ -1,7 +1,7 @@
 """
 Setup method for mont4k azcamconsole.
 Usage example:
-  python -i -m azcam_bcspc.console
+  ipython -i -m azcam_bcspc.console --profile azcamconsole
 """
 
 import os
@@ -11,9 +11,9 @@ import threading
 import azcam
 import azcam.utils
 import azcam_console.console
+from azcam_console.tools import create_console_tools
 import azcam_console.shortcuts
 from azcam.tools.ds9display import Ds9Display
-from azcam_console.observe.observe_common import ObserveCommon
 from azcam_console.observe.observe_cli.observe_cli import ObserveCli
 import azcam_console.tools.console_tools
 
@@ -25,11 +25,6 @@ def setup():
         datafolder = sys.argv[i + 1]
     except ValueError:
         datafolder = None
-    try:
-        i = sys.argv.index("-lab")
-        lab = 1
-    except ValueError:
-        lab = 0
 
     # files and folders
     azcam.db.systemname = "bcspec"
@@ -53,8 +48,6 @@ def setup():
     dthread.start()  # thread just for speed
 
     # console tools
-    from azcam_console.tools import create_console_tools
-
     create_console_tools()
 
     # observe
@@ -77,3 +70,5 @@ def setup():
 setup()
 
 from azcam_console.cli import *
+
+del setup

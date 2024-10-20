@@ -29,11 +29,6 @@ def setup():
         datafolder = sys.argv[i + 1]
     except ValueError:
         datafolder = None
-    try:
-        i = sys.argv.index("-lab")
-        lab = 1
-    except ValueError:
-        lab = 0
 
     # define folders for system
     azcam.db.systemname = "bcspec"
@@ -73,10 +68,7 @@ def setup():
     controller.timing_file = os.path.join(
         azcam.db.datafolder, "dspcode", "dsptiming", "tim1_norm_LR.lod"
     )
-    if lab:
-        controller.camserver.set_server("10.0.0.3", 2405)
-    else:
-        controller.camserver.set_server("10.30.1.34", 2405)
+    controller.camserver.set_server("10.30.1.34", 2405)
 
     # temperature controller
     tempcon = TempConArc()
@@ -89,9 +81,8 @@ def setup():
     exposure.image.filetype = exposure.filetypes["FITS"]
     exposure.display_image = 0
     exposure.folder = azcam.db.datafolder
-    if not lab:
-        exposure.send_image = 1
-        exposure.sendimage.set_remote_imageserver("10.30.1.2", 6543, "dataserver")
+    exposure.send_image = 1
+    exposure.sendimage.set_remote_imageserver("10.30.1.2", 6543, "dataserver")
 
     ref1 = 1.0
     ref2 = 1.0
