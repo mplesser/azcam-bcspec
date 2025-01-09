@@ -19,7 +19,9 @@ from azcam.tools.arc.tempcon_arc import TempConArc
 from azcam.tools.ds9display import Ds9Display
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
-from azcam.web.fastapi_server import WebServer
+from azcam.webtools.webserver.fastapi_server import WebServer
+from azcam.webtools.status.status import Status
+from azcam.webtools.exptool.exptool import Exptool
 
 
 def setup():

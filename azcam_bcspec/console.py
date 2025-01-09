@@ -11,10 +11,10 @@ import threading
 import azcam
 import azcam.utils
 import azcam_console.console
-from azcam_console.tools import create_console_tools
+from azcam_console.tools.console_tools import create_console_tools
 import azcam_console.shortcuts
 from azcam.tools.ds9display import Ds9Display
-from azcam_console.observe.observe_cli.observe_cli import ObserveCli
+from azcam_console.observe.observe_common import ObserveCommon
 import azcam_console.tools.console_tools
 
 
@@ -55,7 +55,7 @@ def setup():
 
     # try to connect to azcamserver
     server = azcam.db.tools["server"]
-    connected = server.connect(port=2452)
+    connected = server.connect(port=2442)
     if connected:
         azcam.log("Connected to azcamserver")
     else:
@@ -69,6 +69,4 @@ def setup():
 # start
 setup()
 
-from azcam_console.cli import *
-
-del setup
+from azcam.cli import *
