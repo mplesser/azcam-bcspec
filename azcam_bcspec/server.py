@@ -9,7 +9,7 @@ import sys
 
 import azcam
 import azcam.utils
-import azcam.server
+from azcam.server import setup_server
 import azcam.shortcuts
 from azcam.cmdserver import CommandServer
 from azcam.header import System
@@ -19,9 +19,7 @@ from azcam.tools.arc.tempcon_arc import TempConArc
 from azcam.tools.ds9display import Ds9Display
 from azcam_bcspec.instrument_bcspec import BCSpecInstrument
 from azcam_bcspec.telescope_bok import BokTCS
-from azcam.webtools.webserver.fastapi_server import WebServer
-from azcam.webtools.status.status import Status
-from azcam.webtools.exptool.exptool import Exptool
+from azcam.web.fastapi_server import WebServer
 
 
 def setup():
@@ -31,6 +29,8 @@ def setup():
         datafolder = sys.argv[i + 1]
     except ValueError:
         datafolder = None
+
+    setup_server()
 
     # define folders for system
     azcam.db.systemname = "bcspec"
@@ -138,7 +138,7 @@ def setup():
     cmdserver = CommandServer()
     cmdserver.port = 2452
     azcam.log(f"Starting cmdserver - listening on port {cmdserver.port}")
-    azcam.db.tools["api"].initialize_api()
+    azcam.db.api.initialize()
     cmdserver.start()
 
     # web server

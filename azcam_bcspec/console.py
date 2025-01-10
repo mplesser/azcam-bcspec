@@ -14,7 +14,6 @@ import azcam_console.console
 from azcam_console.tools.console_tools import create_console_tools
 import azcam_console.shortcuts
 from azcam.tools.ds9display import Ds9Display
-from azcam_console.observe.observe_common import ObserveCommon
 import azcam_console.tools.console_tools
 
 
@@ -51,11 +50,13 @@ def setup():
     create_console_tools()
 
     # observe
+    azcam.log("Loading observe")
+    from azcam_console.observe.observe_cli.observe_cli import ObserveCli
+
     observe = ObserveCli()
 
     # try to connect to azcamserver
-    server = azcam.db.tools["server"]
-    connected = server.connect(port=2442)
+    connected = azcam.db.server.connect(port=2442)
     if connected:
         azcam.log("Connected to azcamserver")
     else:
