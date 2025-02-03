@@ -56,7 +56,7 @@ def setup():
     observe = ObserveCli()
 
     # try to connect to azcamserver
-    connected = azcam.db.server.connect(port=2442)
+    connected = azcam.db.server.connect(port=2452)
     if connected:
         azcam.log("Connected to azcamserver")
     else:

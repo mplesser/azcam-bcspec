@@ -4,7 +4,7 @@ ExposureStatus start file
 
 import subprocess
 
-OPTIONS = "-port 2452"
+OPTIONS = "-port "2452
 CMD = f"pythonw -m azcam_expstatus.expstatus {OPTIONS}"
 
 p = subprocess.Popen(
